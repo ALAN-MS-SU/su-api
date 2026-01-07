@@ -1,5 +1,5 @@
 model Type {
-      ID Int @id @default(autoincrement())
-      Type String 
-      Characters Character[]
+  ID         Int         @id @default(autoincrement())
+  Type       String
+  Characters Character[]
 }

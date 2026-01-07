@@ -1,9 +1,9 @@
 model Character {
-      ID Int @id @default(autoincrement())
-      Name String 
-      TypeID Int 
-      Type Type @relation(fields: [TypeID], references: [ID])
-      WeaponID Int? @unique
-      Weapon Weapon? @relation(fields: [WeaponID], references: [ID])
-      Fusions Fusion[]
+  ID       Int      @id @default(autoincrement())
+  Name     String
+  TypeID   Int
+  WeaponID Int?     @unique
+  Type     Type     @relation(fields: [TypeID], references: [ID])
+  Weapon   Weapon?  @relation(fields: [WeaponID], references: [ID])
+  Fusions  Fusion[]
 }
