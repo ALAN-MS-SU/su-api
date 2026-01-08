@@ -11,4 +11,10 @@ export class PrismaService extends PrismaClient {
 
     super({ adapter });
   }
+  async Connection<T>(Function: () => Promise<T>): Promise<T> {
+    await this.$connect();
+    const Res = await Function();
+    await this.$disconnect();
+    return Res;
+  }
 }

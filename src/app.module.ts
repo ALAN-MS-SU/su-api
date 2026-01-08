@@ -6,7 +6,13 @@ import { WeaponModule } from './weapon/weapon.module';
 import { FusionModule } from './fusion/fusion.module';
 
 @Module({
-  imports: [PrismaModule, CharacterModule, TypeModule, WeaponModule, FusionModule],
+  imports: [
+    PrismaModule,
+    CharacterModule,
+    TypeModule,
+    WeaponModule,
+    FusionModule,
+  ],
   controllers: [],
   providers: [],
 })
