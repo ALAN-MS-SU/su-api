@@ -75,6 +75,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const CharacterScalarFieldEnum = {
   ID: 'ID',
+  CharacterID: 'CharacterID',
   Name: 'Name',
   TypeID: 'TypeID',
   WeaponID: 'WeaponID'

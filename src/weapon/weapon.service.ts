@@ -35,21 +35,11 @@ export class WeaponService {
     });
     return Weapons;
   }
-  async Find(Filter: {
-    select?: WeaponSelect<DefaultArgs> | null | undefined;
-    omit?: WeaponOmit<DefaultArgs> | null | undefined;
-    include?: WeaponInclude<DefaultArgs> | null | undefined;
-    where?: WeaponWhereInput | undefined;
-    orderBy?:
-      | (WeaponOrderByWithRelationInput | WeaponOrderByWithRelationInput[])
-      | undefined;
-    cursor?: WeaponWhereUniqueInput | undefined;
-    take?: number | undefined;
-    skip?: number | undefined;
-    distinct?: (WeaponScalarFieldEnum | WeaponScalarFieldEnum[]) | undefined;
-  }): Promise<Weapon | null> {
+  async Find({ ID }: Pick<Weapon, 'ID'>): Promise<Weapon | null> {
     const Weapon = await this.Prisma.Connection<Weapon | null>(async () => {
-      return await this.Prisma.weapon.findFirst(Filter);
+      return await this.Prisma.weapon.findFirst({
+        where: { ID },
+      });
     });
     return Weapon;
   }

@@ -33,21 +33,11 @@ export class TypeService {
     });
     return Types;
   }
-  async Find(Filter: {
-    select?: TypeSelect<DefaultArgs> | null | undefined;
-    omit?: TypeOmit<DefaultArgs> | null | undefined;
-    include?: TypeInclude<DefaultArgs> | null | undefined;
-    where?: TypeWhereInput | undefined;
-    orderBy?:
-      | (TypeOrderByWithRelationInput | TypeOrderByWithRelationInput[])
-      | undefined;
-    cursor?: TypeWhereUniqueInput | undefined;
-    take?: number | undefined;
-    skip?: number | undefined;
-    distinct?: (TypeScalarFieldEnum | TypeScalarFieldEnum[]) | undefined;
-  }): Promise<Type | null> {
+  async Find({ ID }: Pick<Type, 'ID'>): Promise<Type | null> {
     const Type = await this.Prisma.Connection<Type | null>(async () => {
-      return await this.Prisma.type.findFirst(Filter);
+      return await this.Prisma.type.findFirst({
+        where: { ID },
+      });
     });
     return Type;
   }

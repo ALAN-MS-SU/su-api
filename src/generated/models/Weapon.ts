@@ -200,7 +200,7 @@ export type WeaponWhereInput = {
   ID?: Prisma.IntFilter<"Weapon"> | number
   Name?: Prisma.StringFilter<"Weapon"> | string
   Range?: Prisma.EnumRangeFilter<"Weapon"> | $Enums.Range
-  Characters?: Prisma.XOR<Prisma.CharacterNullableScalarRelationFilter, Prisma.CharacterWhereInput> | null
+  Character?: Prisma.CharacterListRelationFilter
   Fusions?: Prisma.FusionListRelationFilter
 }
 
@@ -208,7 +208,7 @@ export type WeaponOrderByWithRelationInput = {
   ID?: Prisma.SortOrder
   Name?: Prisma.SortOrder
   Range?: Prisma.SortOrder
-  Characters?: Prisma.CharacterOrderByWithRelationInput
+  Character?: Prisma.CharacterOrderByRelationAggregateInput
   Fusions?: Prisma.FusionOrderByRelationAggregateInput
 }
 
@@ -219,7 +219,7 @@ export type WeaponWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.WeaponWhereInput | Prisma.WeaponWhereInput[]
   Name?: Prisma.StringFilter<"Weapon"> | string
   Range?: Prisma.EnumRangeFilter<"Weapon"> | $Enums.Range
-  Characters?: Prisma.XOR<Prisma.CharacterNullableScalarRelationFilter, Prisma.CharacterWhereInput> | null
+  Character?: Prisma.CharacterListRelationFilter
   Fusions?: Prisma.FusionListRelationFilter
 }, "ID">
 
@@ -246,7 +246,7 @@ export type WeaponScalarWhereWithAggregatesInput = {
 export type WeaponCreateInput = {
   Name: string
   Range: $Enums.Range
-  Characters?: Prisma.CharacterCreateNestedOneWithoutWeaponInput
+  Character?: Prisma.CharacterCreateNestedManyWithoutWeaponInput
   Fusions?: Prisma.FusionCreateNestedManyWithoutWeaponInput
 }
 
@@ -254,14 +254,14 @@ export type WeaponUncheckedCreateInput = {
   ID?: number
   Name: string
   Range: $Enums.Range
-  Characters?: Prisma.CharacterUncheckedCreateNestedOneWithoutWeaponInput
+  Character?: Prisma.CharacterUncheckedCreateNestedManyWithoutWeaponInput
   Fusions?: Prisma.FusionUncheckedCreateNestedManyWithoutWeaponInput
 }
 
 export type WeaponUpdateInput = {
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   Range?: Prisma.EnumRangeFieldUpdateOperationsInput | $Enums.Range
-  Characters?: Prisma.CharacterUpdateOneWithoutWeaponNestedInput
+  Character?: Prisma.CharacterUpdateManyWithoutWeaponNestedInput
   Fusions?: Prisma.FusionUpdateManyWithoutWeaponNestedInput
 }
 
@@ -269,7 +269,7 @@ export type WeaponUncheckedUpdateInput = {
   ID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   Range?: Prisma.EnumRangeFieldUpdateOperationsInput | $Enums.Range
-  Characters?: Prisma.CharacterUncheckedUpdateOneWithoutWeaponNestedInput
+  Character?: Prisma.CharacterUncheckedUpdateManyWithoutWeaponNestedInput
   Fusions?: Prisma.FusionUncheckedUpdateManyWithoutWeaponNestedInput
 }
 
@@ -321,20 +321,20 @@ export type WeaponSumOrderByAggregateInput = {
   ID?: Prisma.SortOrder
 }
 
-export type WeaponCreateNestedOneWithoutCharactersInput = {
-  create?: Prisma.XOR<Prisma.WeaponCreateWithoutCharactersInput, Prisma.WeaponUncheckedCreateWithoutCharactersInput>
-  connectOrCreate?: Prisma.WeaponCreateOrConnectWithoutCharactersInput
+export type WeaponCreateNestedOneWithoutCharacterInput = {
+  create?: Prisma.XOR<Prisma.WeaponCreateWithoutCharacterInput, Prisma.WeaponUncheckedCreateWithoutCharacterInput>
+  connectOrCreate?: Prisma.WeaponCreateOrConnectWithoutCharacterInput
   connect?: Prisma.WeaponWhereUniqueInput
 }
 
-export type WeaponUpdateOneWithoutCharactersNestedInput = {
-  create?: Prisma.XOR<Prisma.WeaponCreateWithoutCharactersInput, Prisma.WeaponUncheckedCreateWithoutCharactersInput>
-  connectOrCreate?: Prisma.WeaponCreateOrConnectWithoutCharactersInput
-  upsert?: Prisma.WeaponUpsertWithoutCharactersInput
+export type WeaponUpdateOneWithoutCharacterNestedInput = {
+  create?: Prisma.XOR<Prisma.WeaponCreateWithoutCharacterInput, Prisma.WeaponUncheckedCreateWithoutCharacterInput>
+  connectOrCreate?: Prisma.WeaponCreateOrConnectWithoutCharacterInput
+  upsert?: Prisma.WeaponUpsertWithoutCharacterInput
   disconnect?: Prisma.WeaponWhereInput | boolean
   delete?: Prisma.WeaponWhereInput | boolean
   connect?: Prisma.WeaponWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WeaponUpdateToOneWithWhereWithoutCharactersInput, Prisma.WeaponUpdateWithoutCharactersInput>, Prisma.WeaponUncheckedUpdateWithoutCharactersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WeaponUpdateToOneWithWhereWithoutCharacterInput, Prisma.WeaponUpdateWithoutCharacterInput>, Prisma.WeaponUncheckedUpdateWithoutCharacterInput>
 }
 
 export type WeaponCreateNestedOneWithoutFusionsInput = {
@@ -357,42 +357,42 @@ export type EnumRangeFieldUpdateOperationsInput = {
   set?: $Enums.Range
 }
 
-export type WeaponCreateWithoutCharactersInput = {
+export type WeaponCreateWithoutCharacterInput = {
   Name: string
   Range: $Enums.Range
   Fusions?: Prisma.FusionCreateNestedManyWithoutWeaponInput
 }
 
-export type WeaponUncheckedCreateWithoutCharactersInput = {
+export type WeaponUncheckedCreateWithoutCharacterInput = {
   ID?: number
   Name: string
   Range: $Enums.Range
   Fusions?: Prisma.FusionUncheckedCreateNestedManyWithoutWeaponInput
 }
 
-export type WeaponCreateOrConnectWithoutCharactersInput = {
+export type WeaponCreateOrConnectWithoutCharacterInput = {
   where: Prisma.WeaponWhereUniqueInput
-  create: Prisma.XOR<Prisma.WeaponCreateWithoutCharactersInput, Prisma.WeaponUncheckedCreateWithoutCharactersInput>
+  create: Prisma.XOR<Prisma.WeaponCreateWithoutCharacterInput, Prisma.WeaponUncheckedCreateWithoutCharacterInput>
 }
 
-export type WeaponUpsertWithoutCharactersInput = {
-  update: Prisma.XOR<Prisma.WeaponUpdateWithoutCharactersInput, Prisma.WeaponUncheckedUpdateWithoutCharactersInput>
-  create: Prisma.XOR<Prisma.WeaponCreateWithoutCharactersInput, Prisma.WeaponUncheckedCreateWithoutCharactersInput>
+export type WeaponUpsertWithoutCharacterInput = {
+  update: Prisma.XOR<Prisma.WeaponUpdateWithoutCharacterInput, Prisma.WeaponUncheckedUpdateWithoutCharacterInput>
+  create: Prisma.XOR<Prisma.WeaponCreateWithoutCharacterInput, Prisma.WeaponUncheckedCreateWithoutCharacterInput>
   where?: Prisma.WeaponWhereInput
 }
 
-export type WeaponUpdateToOneWithWhereWithoutCharactersInput = {
+export type WeaponUpdateToOneWithWhereWithoutCharacterInput = {
   where?: Prisma.WeaponWhereInput
-  data: Prisma.XOR<Prisma.WeaponUpdateWithoutCharactersInput, Prisma.WeaponUncheckedUpdateWithoutCharactersInput>
+  data: Prisma.XOR<Prisma.WeaponUpdateWithoutCharacterInput, Prisma.WeaponUncheckedUpdateWithoutCharacterInput>
 }
 
-export type WeaponUpdateWithoutCharactersInput = {
+export type WeaponUpdateWithoutCharacterInput = {
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   Range?: Prisma.EnumRangeFieldUpdateOperationsInput | $Enums.Range
   Fusions?: Prisma.FusionUpdateManyWithoutWeaponNestedInput
 }
 
-export type WeaponUncheckedUpdateWithoutCharactersInput = {
+export type WeaponUncheckedUpdateWithoutCharacterInput = {
   ID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   Range?: Prisma.EnumRangeFieldUpdateOperationsInput | $Enums.Range
@@ -402,14 +402,14 @@ export type WeaponUncheckedUpdateWithoutCharactersInput = {
 export type WeaponCreateWithoutFusionsInput = {
   Name: string
   Range: $Enums.Range
-  Characters?: Prisma.CharacterCreateNestedOneWithoutWeaponInput
+  Character?: Prisma.CharacterCreateNestedManyWithoutWeaponInput
 }
 
 export type WeaponUncheckedCreateWithoutFusionsInput = {
   ID?: number
   Name: string
   Range: $Enums.Range
-  Characters?: Prisma.CharacterUncheckedCreateNestedOneWithoutWeaponInput
+  Character?: Prisma.CharacterUncheckedCreateNestedManyWithoutWeaponInput
 }
 
 export type WeaponCreateOrConnectWithoutFusionsInput = {
@@ -431,14 +431,14 @@ export type WeaponUpdateToOneWithWhereWithoutFusionsInput = {
 export type WeaponUpdateWithoutFusionsInput = {
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   Range?: Prisma.EnumRangeFieldUpdateOperationsInput | $Enums.Range
-  Characters?: Prisma.CharacterUpdateOneWithoutWeaponNestedInput
+  Character?: Prisma.CharacterUpdateManyWithoutWeaponNestedInput
 }
 
 export type WeaponUncheckedUpdateWithoutFusionsInput = {
   ID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   Range?: Prisma.EnumRangeFieldUpdateOperationsInput | $Enums.Range
-  Characters?: Prisma.CharacterUncheckedUpdateOneWithoutWeaponNestedInput
+  Character?: Prisma.CharacterUncheckedUpdateManyWithoutWeaponNestedInput
 }
 
 
@@ -447,10 +447,12 @@ export type WeaponUncheckedUpdateWithoutFusionsInput = {
  */
 
 export type WeaponCountOutputType = {
+  Character: number
   Fusions: number
 }
 
 export type WeaponCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Character?: boolean | WeaponCountOutputTypeCountCharacterArgs
   Fusions?: boolean | WeaponCountOutputTypeCountFusionsArgs
 }
 
@@ -467,6 +469,13 @@ export type WeaponCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * WeaponCountOutputType without action
  */
+export type WeaponCountOutputTypeCountCharacterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CharacterWhereInput
+}
+
+/**
+ * WeaponCountOutputType without action
+ */
 export type WeaponCountOutputTypeCountFusionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FusionWhereInput
 }
@@ -476,7 +485,7 @@ export type WeaponSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   ID?: boolean
   Name?: boolean
   Range?: boolean
-  Characters?: boolean | Prisma.Weapon$CharactersArgs<ExtArgs>
+  Character?: boolean | Prisma.Weapon$CharacterArgs<ExtArgs>
   Fusions?: boolean | Prisma.Weapon$FusionsArgs<ExtArgs>
   _count?: boolean | Prisma.WeaponCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["weapon"]>
@@ -501,7 +510,7 @@ export type WeaponSelectScalar = {
 
 export type WeaponOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ID" | "Name" | "Range", ExtArgs["result"]["weapon"]>
 export type WeaponInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Characters?: boolean | Prisma.Weapon$CharactersArgs<ExtArgs>
+  Character?: boolean | Prisma.Weapon$CharacterArgs<ExtArgs>
   Fusions?: boolean | Prisma.Weapon$FusionsArgs<ExtArgs>
   _count?: boolean | Prisma.WeaponCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -511,7 +520,7 @@ export type WeaponIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $WeaponPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Weapon"
   objects: {
-    Characters: Prisma.$CharacterPayload<ExtArgs> | null
+    Character: Prisma.$CharacterPayload<ExtArgs>[]
     Fusions: Prisma.$FusionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -912,7 +921,7 @@ readonly fields: WeaponFieldRefs;
  */
 export interface Prisma__WeaponClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Characters<T extends Prisma.Weapon$CharactersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Weapon$CharactersArgs<ExtArgs>>): Prisma.Prisma__CharacterClient<runtime.Types.Result.GetResult<Prisma.$CharacterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  Character<T extends Prisma.Weapon$CharacterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Weapon$CharacterArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CharacterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Fusions<T extends Prisma.Weapon$FusionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Weapon$FusionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FusionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1334,9 +1343,9 @@ export type WeaponDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Weapon.Characters
+ * Weapon.Character
  */
-export type Weapon$CharactersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Weapon$CharacterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Character
    */
@@ -1350,6 +1359,11 @@ export type Weapon$CharactersArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.CharacterInclude<ExtArgs> | null
   where?: Prisma.CharacterWhereInput
+  orderBy?: Prisma.CharacterOrderByWithRelationInput | Prisma.CharacterOrderByWithRelationInput[]
+  cursor?: Prisma.CharacterWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CharacterScalarFieldEnum | Prisma.CharacterScalarFieldEnum[]
 }
 
 /**

@@ -2,7 +2,7 @@ model Weapon {
   ID         Int        @id @default(autoincrement())
   Name       String
   Range      Range
-  Character Character?
+  Character Character[]
   Fusions    Fusion[]
 }
 
