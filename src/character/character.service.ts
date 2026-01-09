@@ -36,6 +36,7 @@ export class CharacterService {
         )) as unknown as CharacterInfs[];
       },
     );
+
     const IDs = [
       ...new Set(
         Characters.map((Row) => {

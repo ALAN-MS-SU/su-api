@@ -35,6 +35,7 @@ export class CharacterController {
         ID: true,
         Name: true,
         Type: true,
+        CharacterID: true,
         Weapon: true,
       },
       where: {
@@ -42,12 +43,14 @@ export class CharacterController {
           {
             Name: {
               contains: Search,
+              mode: 'insensitive',
             },
           },
           {
             Type: {
               Type: {
                 contains: Search,
+                mode: 'insensitive',
               },
             },
           },
@@ -55,6 +58,7 @@ export class CharacterController {
             Weapon: {
               Name: {
                 contains: Search,
+                mode: 'insensitive',
               },
             },
           },
