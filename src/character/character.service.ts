@@ -86,16 +86,28 @@ export class CharacterService {
             },
           })
         )._max.CharacterID + 1 || 1;
-      const Data = await this.Prisma.character.createMany({
-        data: WeaponIDs.map((WeaponID) => {
-          return {
+      let Data;
+      if (WeaponIDs.length > 0) {
+        Data = await this.Prisma.character.createMany({
+          data: WeaponIDs.map((WeaponID) => {
+            return {
+              Name,
+              TypeID,
+              WeaponID,
+              CharacterID,
+            };
+          }),
+        });
+      }
+      if (WeaponIDs.length < 1) {
+        Data = await this.Prisma.character.create({
+          data: {
             Name,
             TypeID,
-            WeaponID,
             CharacterID,
-          };
-        }),
-      });
+          },
+        });
+      }
       if (Data) return true;
       return false;
     });
