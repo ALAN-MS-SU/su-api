@@ -375,9 +375,9 @@ export type CharacterSumOrderByAggregateInput = {
   WeaponID?: Prisma.SortOrder
 }
 
-export type CharacterScalarRelationFilter = {
-  is?: Prisma.CharacterWhereInput
-  isNot?: Prisma.CharacterWhereInput
+export type CharacterNullableScalarRelationFilter = {
+  is?: Prisma.CharacterWhereInput | null
+  isNot?: Prisma.CharacterWhereInput | null
 }
 
 export type CharacterListRelationFilter = {
@@ -416,10 +416,12 @@ export type CharacterCreateNestedOneWithoutFusionsInput = {
   connect?: Prisma.CharacterWhereUniqueInput
 }
 
-export type CharacterUpdateOneRequiredWithoutFusionsNestedInput = {
+export type CharacterUpdateOneWithoutFusionsNestedInput = {
   create?: Prisma.XOR<Prisma.CharacterCreateWithoutFusionsInput, Prisma.CharacterUncheckedCreateWithoutFusionsInput>
   connectOrCreate?: Prisma.CharacterCreateOrConnectWithoutFusionsInput
   upsert?: Prisma.CharacterUpsertWithoutFusionsInput
+  disconnect?: Prisma.CharacterWhereInput | boolean
+  delete?: Prisma.CharacterWhereInput | boolean
   connect?: Prisma.CharacterWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CharacterUpdateToOneWithWhereWithoutFusionsInput, Prisma.CharacterUpdateWithoutFusionsInput>, Prisma.CharacterUncheckedUpdateWithoutFusionsInput>
 }

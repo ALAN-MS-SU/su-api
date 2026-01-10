@@ -196,7 +196,7 @@ export type FusionGroupByOutputType = {
   FusionID: number
   Name: string
   WeaponID: number | null
-  CharacterID: number
+  CharacterID: number | null
   _count: FusionCountAggregateOutputType | null
   _avg: FusionAvgAggregateOutputType | null
   _sum: FusionSumAggregateOutputType | null
@@ -227,8 +227,8 @@ export type FusionWhereInput = {
   FusionID?: Prisma.IntFilter<"Fusion"> | number
   Name?: Prisma.StringFilter<"Fusion"> | string
   WeaponID?: Prisma.IntNullableFilter<"Fusion"> | number | null
-  CharacterID?: Prisma.IntFilter<"Fusion"> | number
-  Character?: Prisma.XOR<Prisma.CharacterScalarRelationFilter, Prisma.CharacterWhereInput>
+  CharacterID?: Prisma.IntNullableFilter<"Fusion"> | number | null
+  Character?: Prisma.XOR<Prisma.CharacterNullableScalarRelationFilter, Prisma.CharacterWhereInput> | null
   Weapon?: Prisma.XOR<Prisma.WeaponNullableScalarRelationFilter, Prisma.WeaponWhereInput> | null
 }
 
@@ -237,7 +237,7 @@ export type FusionOrderByWithRelationInput = {
   FusionID?: Prisma.SortOrder
   Name?: Prisma.SortOrder
   WeaponID?: Prisma.SortOrderInput | Prisma.SortOrder
-  CharacterID?: Prisma.SortOrder
+  CharacterID?: Prisma.SortOrderInput | Prisma.SortOrder
   Character?: Prisma.CharacterOrderByWithRelationInput
   Weapon?: Prisma.WeaponOrderByWithRelationInput
 }
@@ -250,8 +250,8 @@ export type FusionWhereUniqueInput = Prisma.AtLeast<{
   FusionID?: Prisma.IntFilter<"Fusion"> | number
   Name?: Prisma.StringFilter<"Fusion"> | string
   WeaponID?: Prisma.IntNullableFilter<"Fusion"> | number | null
-  CharacterID?: Prisma.IntFilter<"Fusion"> | number
-  Character?: Prisma.XOR<Prisma.CharacterScalarRelationFilter, Prisma.CharacterWhereInput>
+  CharacterID?: Prisma.IntNullableFilter<"Fusion"> | number | null
+  Character?: Prisma.XOR<Prisma.CharacterNullableScalarRelationFilter, Prisma.CharacterWhereInput> | null
   Weapon?: Prisma.XOR<Prisma.WeaponNullableScalarRelationFilter, Prisma.WeaponWhereInput> | null
 }, "ID">
 
@@ -260,7 +260,7 @@ export type FusionOrderByWithAggregationInput = {
   FusionID?: Prisma.SortOrder
   Name?: Prisma.SortOrder
   WeaponID?: Prisma.SortOrderInput | Prisma.SortOrder
-  CharacterID?: Prisma.SortOrder
+  CharacterID?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.FusionCountOrderByAggregateInput
   _avg?: Prisma.FusionAvgOrderByAggregateInput
   _max?: Prisma.FusionMaxOrderByAggregateInput
@@ -276,13 +276,13 @@ export type FusionScalarWhereWithAggregatesInput = {
   FusionID?: Prisma.IntWithAggregatesFilter<"Fusion"> | number
   Name?: Prisma.StringWithAggregatesFilter<"Fusion"> | string
   WeaponID?: Prisma.IntNullableWithAggregatesFilter<"Fusion"> | number | null
-  CharacterID?: Prisma.IntWithAggregatesFilter<"Fusion"> | number
+  CharacterID?: Prisma.IntNullableWithAggregatesFilter<"Fusion"> | number | null
 }
 
 export type FusionCreateInput = {
   FusionID: number
   Name: string
-  Character: Prisma.CharacterCreateNestedOneWithoutFusionsInput
+  Character?: Prisma.CharacterCreateNestedOneWithoutFusionsInput
   Weapon?: Prisma.WeaponCreateNestedOneWithoutFusionsInput
 }
 
@@ -291,13 +291,13 @@ export type FusionUncheckedCreateInput = {
   FusionID: number
   Name: string
   WeaponID?: number | null
-  CharacterID: number
+  CharacterID?: number | null
 }
 
 export type FusionUpdateInput = {
   FusionID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
-  Character?: Prisma.CharacterUpdateOneRequiredWithoutFusionsNestedInput
+  Character?: Prisma.CharacterUpdateOneWithoutFusionsNestedInput
   Weapon?: Prisma.WeaponUpdateOneWithoutFusionsNestedInput
 }
 
@@ -306,7 +306,7 @@ export type FusionUncheckedUpdateInput = {
   FusionID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   WeaponID?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  CharacterID?: Prisma.IntFieldUpdateOperationsInput | number
+  CharacterID?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type FusionCreateManyInput = {
@@ -314,7 +314,7 @@ export type FusionCreateManyInput = {
   FusionID: number
   Name: string
   WeaponID?: number | null
-  CharacterID: number
+  CharacterID?: number | null
 }
 
 export type FusionUpdateManyMutationInput = {
@@ -327,7 +327,7 @@ export type FusionUncheckedUpdateManyInput = {
   FusionID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
   WeaponID?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  CharacterID?: Prisma.IntFieldUpdateOperationsInput | number
+  CharacterID?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type FusionListRelationFilter = {
@@ -509,20 +509,20 @@ export type FusionScalarWhereInput = {
   FusionID?: Prisma.IntFilter<"Fusion"> | number
   Name?: Prisma.StringFilter<"Fusion"> | string
   WeaponID?: Prisma.IntNullableFilter<"Fusion"> | number | null
-  CharacterID?: Prisma.IntFilter<"Fusion"> | number
+  CharacterID?: Prisma.IntNullableFilter<"Fusion"> | number | null
 }
 
 export type FusionCreateWithoutWeaponInput = {
   FusionID: number
   Name: string
-  Character: Prisma.CharacterCreateNestedOneWithoutFusionsInput
+  Character?: Prisma.CharacterCreateNestedOneWithoutFusionsInput
 }
 
 export type FusionUncheckedCreateWithoutWeaponInput = {
   ID?: number
   FusionID: number
   Name: string
-  CharacterID: number
+  CharacterID?: number | null
 }
 
 export type FusionCreateOrConnectWithoutWeaponInput = {
@@ -582,27 +582,27 @@ export type FusionCreateManyWeaponInput = {
   ID?: number
   FusionID: number
   Name: string
-  CharacterID: number
+  CharacterID?: number | null
 }
 
 export type FusionUpdateWithoutWeaponInput = {
   FusionID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
-  Character?: Prisma.CharacterUpdateOneRequiredWithoutFusionsNestedInput
+  Character?: Prisma.CharacterUpdateOneWithoutFusionsNestedInput
 }
 
 export type FusionUncheckedUpdateWithoutWeaponInput = {
   ID?: Prisma.IntFieldUpdateOperationsInput | number
   FusionID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
-  CharacterID?: Prisma.IntFieldUpdateOperationsInput | number
+  CharacterID?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type FusionUncheckedUpdateManyWithoutWeaponInput = {
   ID?: Prisma.IntFieldUpdateOperationsInput | number
   FusionID?: Prisma.IntFieldUpdateOperationsInput | number
   Name?: Prisma.StringFieldUpdateOperationsInput | string
-  CharacterID?: Prisma.IntFieldUpdateOperationsInput | number
+  CharacterID?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -613,7 +613,7 @@ export type FusionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   Name?: boolean
   WeaponID?: boolean
   CharacterID?: boolean
-  Character?: boolean | Prisma.CharacterDefaultArgs<ExtArgs>
+  Character?: boolean | Prisma.Fusion$CharacterArgs<ExtArgs>
   Weapon?: boolean | Prisma.Fusion$WeaponArgs<ExtArgs>
 }, ExtArgs["result"]["fusion"]>
 
@@ -623,7 +623,7 @@ export type FusionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   Name?: boolean
   WeaponID?: boolean
   CharacterID?: boolean
-  Character?: boolean | Prisma.CharacterDefaultArgs<ExtArgs>
+  Character?: boolean | Prisma.Fusion$CharacterArgs<ExtArgs>
   Weapon?: boolean | Prisma.Fusion$WeaponArgs<ExtArgs>
 }, ExtArgs["result"]["fusion"]>
 
@@ -633,7 +633,7 @@ export type FusionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   Name?: boolean
   WeaponID?: boolean
   CharacterID?: boolean
-  Character?: boolean | Prisma.CharacterDefaultArgs<ExtArgs>
+  Character?: boolean | Prisma.Fusion$CharacterArgs<ExtArgs>
   Weapon?: boolean | Prisma.Fusion$WeaponArgs<ExtArgs>
 }, ExtArgs["result"]["fusion"]>
 
@@ -647,22 +647,22 @@ export type FusionSelectScalar = {
 
 export type FusionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"ID" | "FusionID" | "Name" | "WeaponID" | "CharacterID", ExtArgs["result"]["fusion"]>
 export type FusionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Character?: boolean | Prisma.CharacterDefaultArgs<ExtArgs>
+  Character?: boolean | Prisma.Fusion$CharacterArgs<ExtArgs>
   Weapon?: boolean | Prisma.Fusion$WeaponArgs<ExtArgs>
 }
 export type FusionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Character?: boolean | Prisma.CharacterDefaultArgs<ExtArgs>
+  Character?: boolean | Prisma.Fusion$CharacterArgs<ExtArgs>
   Weapon?: boolean | Prisma.Fusion$WeaponArgs<ExtArgs>
 }
 export type FusionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Character?: boolean | Prisma.CharacterDefaultArgs<ExtArgs>
+  Character?: boolean | Prisma.Fusion$CharacterArgs<ExtArgs>
   Weapon?: boolean | Prisma.Fusion$WeaponArgs<ExtArgs>
 }
 
 export type $FusionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Fusion"
   objects: {
-    Character: Prisma.$CharacterPayload<ExtArgs>
+    Character: Prisma.$CharacterPayload<ExtArgs> | null
     Weapon: Prisma.$WeaponPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -670,7 +670,7 @@ export type $FusionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     FusionID: number
     Name: string
     WeaponID: number | null
-    CharacterID: number
+    CharacterID: number | null
   }, ExtArgs["result"]["fusion"]>
   composites: {}
 }
@@ -1065,7 +1065,7 @@ readonly fields: FusionFieldRefs;
  */
 export interface Prisma__FusionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Character<T extends Prisma.CharacterDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CharacterDefaultArgs<ExtArgs>>): Prisma.Prisma__CharacterClient<runtime.Types.Result.GetResult<Prisma.$CharacterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  Character<T extends Prisma.Fusion$CharacterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fusion$CharacterArgs<ExtArgs>>): Prisma.Prisma__CharacterClient<runtime.Types.Result.GetResult<Prisma.$CharacterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   Weapon<T extends Prisma.Fusion$WeaponArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Fusion$WeaponArgs<ExtArgs>>): Prisma.Prisma__WeaponClient<runtime.Types.Result.GetResult<Prisma.$WeaponPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1494,6 +1494,25 @@ export type FusionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Fusions to delete.
    */
   limit?: number
+}
+
+/**
+ * Fusion.Character
+ */
+export type Fusion$CharacterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Character
+   */
+  select?: Prisma.CharacterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Character
+   */
+  omit?: Prisma.CharacterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CharacterInclude<ExtArgs> | null
+  where?: Prisma.CharacterWhereInput
 }
 
 /**

@@ -9,5 +9,6 @@ import { WeaponModule } from 'src/weapon/weapon.module';
   imports: [PrismaModule, TypeModule, WeaponModule],
   providers: [CharacterService],
   controllers: [CharacterController],
+  exports: [CharacterService],
 })
 export class CharacterModule {}
