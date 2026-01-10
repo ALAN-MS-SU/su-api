@@ -39,30 +39,10 @@ export class CharacterController {
         Weapon: true,
       },
       where: {
-        OR: [
-          {
-            Name: {
-              contains: Search,
-              mode: 'insensitive',
-            },
-          },
-          {
-            Type: {
-              Type: {
-                contains: Search,
-                mode: 'insensitive',
-              },
-            },
-          },
-          {
-            Weapon: {
-              Name: {
-                contains: Search,
-                mode: 'insensitive',
-              },
-            },
-          },
-        ],
+        Name: {
+          contains: Search,
+          mode: 'insensitive',
+        },
       },
     });
     return res.status(200).json(data);
