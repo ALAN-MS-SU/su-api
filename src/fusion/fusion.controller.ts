@@ -29,7 +29,7 @@ export class FusionController {
     @Param('Search') Search: string,
     @Res() res: express.Response,
   ) {
-    const Data = await this.Service.GetAll({
+    const Fusions = await this.Service.GetAll({
       select: {
         ID: true,
         FusionID: true,
@@ -44,7 +44,7 @@ export class FusionController {
         },
       },
     });
-    return res.status(200).json(Data);
+    return res.status(200).json(Fusions);
   }
   @Post()
   async Post(

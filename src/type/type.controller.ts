@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
 import { TypeService } from './type.service';
 import { Type } from 'src/generated/client';
 import express from 'express';
@@ -8,6 +8,21 @@ export class TypeController {
   @Get()
   async GetAll(@Res() res: express.Response) {
     const Types = await this.Service.GetAll();
+    return res.status(200).json(Types);
+  }
+  @Get(':Search')
+  async GetSearch(
+    @Param('Search') Search: string,
+    @Res() res: express.Response,
+  ) {
+    const Types = await this.Service.GetAll({
+      where: {
+        Type: {
+          contains: Search,
+          mode: 'insensitive',
+        },
+      },
+    });
     return res.status(200).json(Types);
   }
   @Post()

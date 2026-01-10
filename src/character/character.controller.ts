@@ -14,7 +14,7 @@ export class CharacterController {
   ) {}
   @Get()
   async GetAll(@Res() res: express.Response) {
-    const data = await this.Service.GetAll({
+    const Characters = await this.Service.GetAll({
       select: {
         ID: true,
         CharacterID: true,
@@ -23,14 +23,14 @@ export class CharacterController {
         Weapon: true,
       },
     });
-    return res.status(200).json(data);
+    return res.status(200).json(Characters);
   }
   @Get(':Search')
   async GetSearch(
     @Param('Search') Search: string,
     @Res() res: express.Response,
   ) {
-    const data = await this.Service.GetAll({
+    const Characters = await this.Service.GetAll({
       select: {
         ID: true,
         Name: true,
@@ -45,7 +45,7 @@ export class CharacterController {
         },
       },
     });
-    return res.status(200).json(data);
+    return res.status(200).json(Characters);
   }
   @Post()
   async Post(
