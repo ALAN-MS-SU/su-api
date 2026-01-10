@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
 import { WeaponService } from './weapon.service';
 import { Weapon, Range as EnumRange } from 'src/generated/client';
 import express from 'express';
@@ -10,6 +10,21 @@ export class WeaponController {
   async GetAll(): Promise<Weapon[]> {
     const Weapons = await this.Service.GetAll();
     return Weapons;
+  }
+  @Get(':Search')
+  async GetSearch(
+    @Param('Search') Search: string,
+    @Res() res: express.Response,
+  ) {
+    const Weapons = await this.Service.GetAll({
+      where: {
+        Name: {
+          contains: Search,
+          mode: 'insensitive',
+        },
+      },
+    });
+    return res.status(200).json(Weapons);
   }
   @Post()
   async Post(
